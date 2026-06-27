@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClubCollab — Angebot: Microsoft 365 für Vereine</title>
+<meta name="description" content="Vier klare Pakete für Vereine: Collab Full, Support, Manage und Backup. Microsoft 365 — eingerichtet und betreut.">
+<link rel="icon" href="./assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/site.css">
+<style>
+/* Angebot-specific */
+.intro-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:end}
+@media(max-width:820px){.intro-split{grid-template-columns:1fr;gap:24px}}
+/* accordion packages */
+.acc-list{margin-top:clamp(26px,4vw,40px);border-top:1.5px solid var(--ink)}
+.acc{border-bottom:1.5px solid var(--ink)}
+.acc-head{width:100%;display:flex;align-items:center;gap:clamp(14px,3vw,30px);background:none;border:none;cursor:pointer;
+  padding:clamp(22px,3vw,32px) 4px;text-align:left;font-family:inherit;color:var(--ink);transition:padding .3s}
+.acc-head:hover{padding-left:14px}
+.acc-no{font-family:'Space Mono',monospace;font-size:14px;color:var(--muted);flex:none}
+.acc-titles{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.acc-name{font-size:clamp(24px,3.6vw,40px);font-weight:800;letter-spacing:-1px;line-height:1}
+.acc-tag{font-style:italic;font-weight:500;font-size:16px;color:var(--muted)}
+.acc-ic{flex:none;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;position:relative;transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s}
+.acc-ic::before,.acc-ic::after{content:"";position:absolute;background:var(--ink);border-radius:2px}
+.acc-ic::before{top:50%;left:12px;right:12px;height:2px;transform:translateY(-50%)}
+.acc-ic::after{left:50%;top:12px;bottom:12px;width:2px;transform:translateX(-50%);transition:opacity .3s}
+.acc.open .acc-ic{transform:rotate(135deg);background:var(--ink)}
+.acc.open .acc-ic::before,.acc.open .acc-ic::after{background:var(--paper)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
+.acc.open .acc-body{max-height:600px}
+.acc-inner{padding:2px 4px clamp(28px,3vw,36px) clamp(36px,7vw,86px)}
+.acc-text{font-size:17px;line-height:1.6;color:#333;max-width:700px}
+.acc-inner .ulist{margin-top:18px}
+@media(max-width:560px){.acc-ic{width:38px;height:38px}.acc-ic::before{left:10px;right:10px}.acc-ic::after{top:10px;bottom:10px}.acc-inner{padding-left:6px}.acc-tag{font-size:15px}}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:clamp(34px,5vw,50px);counter-reset:s}
+@media(max-width:900px){.flow{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
+.fstep{border-top:2px solid var(--line-d);padding-top:18px}
+.fstep .fn{font-family:'Space Mono',monospace;font-size:13px;color:var(--muted-d)}
+.fstep h4{font-size:clamp(19px,2.2vw,24px);font-weight:700;margin:10px 0 6px;letter-spacing:-.3px}
+.fstep p{font-size:15.5px;color:var(--muted-d);line-height:1.45}
+/* cta */
+.cta-row{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.cta-row h2{max-width:680px}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav id="nav">
+  <a href="./index.html" class="brand"><span class="mono-mark"></span>ClubCollab</a>
+  <div class="navlinks">
+    <a href="./angebot.html" class="active">Angebot</a>
+    <a href="./ueber-uns.html">Über uns</a>
+    <a href="./kontakt.html">Kontakt</a>
+    <a href="./kontakt.html" class="btn">Erstgespräch <span class="ar">→</span></a>
+  </div>
+  <div class="nav-cta">
+    <a href="./kontakt.html" class="btn">Erstgespräch <span class="ar">→</span></a>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-backdrop"></div>
+
+<!-- HERO -->
+<header class="pagehero">
+  <span class="pagehero-mono"><span class="mono-mark" style="display:block;width:100%;height:560px"></span></span>
+  <div class="container">
+    <span class="eyebrow">Angebot — Microsoft 365 für Vereine</span>
+    <h1>Projekte &amp;<br>Support, die <span class="o">sitzen</span>.</h1>
+    <p class="lead">Von der ersten Beratung bis zum laufenden Betrieb. Klar, sicher und persönlich begleitet — ohne IT-Kauderwelsch.</p>
+  </div>
+</header>
+
+<!-- LÖSUNG -->
+<section><div class="container"><div class="sec">
+  <div class="sec-head reveal"><span class="no">01</span><span class="ti">Unsere Lösung</span></div>
+  <div class="intro-split">
+    <h2 class="reveal">Eine Plattform.<br><em>Alles</em> drauf.</h2>
+    <p class="lead reveal">Wir richten eure Vereinsumgebung in Microsoft 365 ein — Kommunikation in Teams, Dateien sauber abgelegt, Abläufe strukturiert. Eine Quelle der Wahrheit für Vorstand und Mitglieder.</p>
+  </div>
+</div></div></section>
+
+<!-- PAKETE -->
+<section><div class="container"><div class="sec" style="padding-top:0">
+  <div class="sec-head reveal"><span class="no">02</span><span class="ti">Die Pakete</span></div>
+  <h2 class="reveal">Vier Pakete. <em>Eine</em> Verantwortung.</h2>
+  <p class="lead reveal" style="margin-bottom:8px">Tippt auf ein Paket für die Details.</p>
+  <div class="acc-list reveal">
+    <div class="acc open">
+      <button class="acc-head" aria-expanded="true">
+        <span class="acc-no">/01</span>
+        <span class="acc-titles"><span class="acc-name">Collab Full</span><span class="acc-tag">Das Rundum-sorglos-Paket</span></span>
+        <span class="acc-ic" aria-hidden="true"></span>
+      </button>
+      <div class="acc-body"><div class="acc-inner">
+        <p class="acc-text">Das komplette Projekt von A bis Z. Wir schauen uns an, wie euer Verein heute arbeitet, richten Microsoft&nbsp;365 passend ein, übernehmen eure bestehenden Dateien und Strukturen, schulen den Vorstand und bleiben danach für den laufenden Betrieb an eurer Seite. Ideal, wenn ihr einmal sauber starten und euch danach um nichts mehr kümmern möchtet.</p>
+        <ul class="ulist">
+          <li>Beratung &amp; Konzept für euren Verein</li>
+          <li>Einrichtung der kompletten Microsoft-365-Umgebung</li>
+          <li>Migration eurer Daten &amp; saubere Ordnerstruktur</li>
+          <li>Persönliche Schulung des Vorstands</li>
+          <li>Laufender Betrieb &amp; Support inklusive</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="acc">
+      <button class="acc-head" aria-expanded="false">
+        <span class="acc-no">/02</span>
+        <span class="acc-titles"><span class="acc-name">Collab Support</span><span class="acc-tag">Hilfe, wenn sie gebraucht wird</span></span>
+        <span class="acc-ic" aria-hidden="true"></span>
+      </button>
+      <div class="acc-body"><div class="acc-inner">
+        <p class="acc-text">Ihr habt eure Umgebung bereits — wir sind da, wenn etwas klemmt. Ein fester Ansprechpartner kennt euren Verein und hilft schnell und verständlich, per Telefon oder E-Mail. Kein Ticket-Pingpong, kein Fachchinesisch.</p>
+        <ul class="ulist">
+          <li>Fester, persönlicher Ansprechpartner</li>
+          <li>Schnelle Reaktionszeiten</li>
+          <li>Hilfe per Telefon &amp; E-Mail</li>
+          <li>Verständliche Schritt-für-Schritt-Anleitungen</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="acc">
+      <button class="acc-head" aria-expanded="false">
+        <span class="acc-no">/03</span>
+        <span class="acc-titles"><span class="acc-name">Collab Manage</span><span class="acc-tag">Verwaltung im Hintergrund</span></span>
+        <span class="acc-ic" aria-hidden="true"></span>
+      </button>
+      <div class="acc-body"><div class="acc-inner">
+        <p class="acc-text">Die laufende Verwaltung übernehmen wir im Hintergrund: neue Vorstandsmitglieder anlegen, ausgeschiedene entfernen, Berechtigungen und Lizenzen pflegen. So bleibt eure Umgebung immer aktuell — ohne dass jemand im Verein zum IT-Profi werden muss.</p>
+        <ul class="ulist">
+          <li>Benutzer anlegen &amp; entfernen</li>
+          <li>Berechtigungen sauber pflegen</li>
+          <li>Lizenzen verwalten &amp; optimieren</li>
+          <li>Regelmässige Updates &amp; Kontrolle</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="acc">
+      <button class="acc-head" aria-expanded="false">
+        <span class="acc-no">/04</span>
+        <span class="acc-titles"><span class="acc-name">Collab Backup</span><span class="acc-tag">Sicher, mit backup.ch</span></span>
+        <span class="acc-ic" aria-hidden="true"></span>
+      </button>
+      <div class="acc-body"><div class="acc-inner">
+        <p class="acc-text">Eine zusätzliche Sicherheitsebene für eure Vereinsdaten. Gemeinsam mit unserem Partner backup.ch sichern wir alles automatisch auf Schweizer Servern. Geht doch einmal etwas verloren, stellen wir es in wenigen Minuten wieder her.</p>
+        <ul class="ulist">
+          <li>Automatische, tägliche Backups</li>
+          <li>Wiederherstellung in Minuten</li>
+          <li>Schweizer Rechenzentren</li>
+          <li>DSG-konform &amp; verschlüsselt</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+</div></div></section>
+
+<!-- ABLAUF kompakt (dark) -->
+<section class="dark"><div class="container"><div class="sec">
+  <div class="sec-head reveal"><span class="no">03</span><span class="ti">Der Ablauf</span></div>
+  <h2 class="reveal">So einfach <em>geht's</em>.</h2>
+  <div class="flow">
+    <div class="fstep reveal"><div class="fn">01</div><h4>Erstkontakt</h4><p>Wir lernen euch kennen.</p></div>
+    <div class="fstep reveal"><div class="fn">02</div><h4>Bedürfnisse</h4><p>Wir hören genau zu.</p></div>
+    <div class="fstep reveal"><div class="fn">03</div><h4>Umsetzung</h4><p>Sauber in M365 aufgesetzt.</p></div>
+    <div class="fstep reveal"><div class="fn">04</div><h4>Schulung</h4><p>Einführung für alle.</p></div>
+    <div class="fstep reveal"><div class="fn">05</div><h4>Betrieb</h4><p>Support das ganze Jahr.</p></div>
+  </div>
+</div></div></section>
+
+<!-- CTA -->
+<section><div class="container"><div class="sec">
+  <div class="cta-row reveal">
+    <h2>Welches Paket passt zu <em>eurem</em> Verein?</h2>
+    <a href="./kontakt.html" class="btn">Kostenloses Erstgespräch <span class="ar">→</span></a>
+  </div>
+</div></div></section>
+
+<footer><div class="container">
+  <div class="foot-big">ClubCollab</div>
+  <div class="foot-grid">
+    <div class="foot-brand"><span class="label" style="color:var(--muted-d)">Gemeinsam gewinnen,</span><span class="serify">…auch digital.</span></div>
+    <div class="foot-col"><h5>Seiten</h5><a href="./index.html">Start</a><a href="./angebot.html">Angebot</a><a href="./ueber-uns.html">Über uns</a><a href="./kontakt.html">Kontakt</a></div>
+    <div class="foot-col"><h5>Rechtliches</h5><a href="#">AGB</a><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+    <div class="foot-col"><h5>Kontakt</h5><a href="mailto:info@clubcollab.ch">info@clubcollab.ch</a><a href="tel:+41442441101">+41 44 244 11 01</a></div>
+  </div>
+  <div class="foot-base"><span>© 2026 ClubCollab</span><span>Microsoft 365 für Schweizer Vereine</span></div>
+</div></footer>
+
+<script src="./assets/site.js"></script>
+</body>
+</html>
